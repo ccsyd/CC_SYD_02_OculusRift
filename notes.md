@@ -6,7 +6,9 @@
 
 
 
-VR - fooling your subconscious senses the more senses that are fooled, the more real the experience
+VR - fooling your subconscious.
+
+The more senses that are fooled, the more real the experience
 
 VRis different to other forms of media - eg. tv, video, intellectualise whats being shown vs feel
 presentation vs representation
@@ -31,19 +33,19 @@ feedback
 Types of VR hardware
  - DK1 / DK2 / GearVR / HTC Vive
 
-DK1
+#### Oculus DK1
 - First development kit from Oculus
 - Rotational tracking
 - 1280x800 (640x800 / eye)
 
-GearVR
+#### Oculus/Samsung GearVR
 - $250, plastic shell + lenses with IMUs, insert phone inside
 - only actual released commercial VR product. Requires Samsung Galaxy Note 4, 2560x1440 (1280x1400 /eye)
 - No positional tracking
 - Much of the content so far seems to be spherical video
 - Mobile SDK not supported by this ofx addon.
 
-DK2
+#### Oculus DK2
 - 1920x1080 (960x1080 / eye)
 - Low persistence screen (reduces smearing - pixels only illuminated for a short time)
 - Positional tracking via IR camera/LEDs, computer vision
@@ -54,7 +56,7 @@ Dk1 vs dk2
 
 CV1 Specs not known, but higher res than DK2
 
-HTC/Valve Vive
+#### HTC/Valve Vive
 - Dual screen, higher resolution
 - Lighthouse tracking system
 
@@ -63,13 +65,13 @@ HTC/Valve Vive
 
 
 
-Stereo rendering for VR
+## Stereo rendering for VR
 - Render two images, offset by the IPD (inter-pupillary distance)
 - Brain finds correspondence between images in each eye, calculating depth based on disparity
 - At 'infinty' no difference between eyes, up close, big difference (try it with your finger)
 - On a practical level, 'infinity' is just the distance at which any changes in space don't translate into pixel differences
 
-Designing for stereo:
+## Designing for stereo
 - Need enough detail for your brain to pick up differences between eyes, but don't want the shapes you're looking at to be too different per eye
 - Large flat colours = little correspondence between eyes, has less of a depth effect
 - Noise/aliasing different in each eye = Can create shimmering effect as each eye is looking at different patterns
@@ -77,9 +79,12 @@ Designing for stereo:
 Oculus SDK
 ========
 
-Oculus SDK simplified:
-- Use tracking info to determine camera position/orientation
-- Render two eyes to framebuffer
-- Run shader on framebuffer to distort the image, ready for presentation to screen
+## How it works
+- Use hardware/tracking info to determine camera position & orientation 
+ - Get projection matrix from the SDK (based on fov, asymmetric frustrum)
+ - Generate modelview matrix from your own camera matrix * tracking orientation * tracking position
+- Render two eyes to temporary framebuffer
+ - Framebuffer resolution determined by SDK, can use a pixelScale parameter to render to lower resolution
+- Run shader on framebuffer to distort the image, rendering the output to a new framebuffer, for presentation to device
+ - Final output always at resolution of device
 
-Oculus SDK detailed
