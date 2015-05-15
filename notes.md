@@ -65,7 +65,7 @@ HTC/Valve Vive
 
 Stereo rendering for VR
 - Render two images, offset by the IPD (inter-pupillary distance)
-- Brain finding correspondence between images in each eye, calculating depth based on disparity
+- Brain finds correspondence between images in each eye, calculating depth based on disparity
 - At 'infinty' no difference between eyes, up close, big difference (try it with your finger)
 - On a practical level, 'infinity' is just the distance at which any changes in space don't translate into pixel differences
 
@@ -74,5 +74,12 @@ Designing for stereo:
 - Large flat colours = little correspondence between eyes, has less of a depth effect
 - Noise/aliasing different in each eye = Can create shimmering effect as each eye is looking at different patterns
 
+Oculus SDK
+========
 
+Oculus SDK simplified:
+- Use tracking info to determine camera position/orientation
+- Render two eyes to framebuffer
+- Run shader on framebuffer to distort the image, ready for presentation to screen
 
+Oculus SDK detailed
