@@ -4,15 +4,31 @@
     <title>Title</title>
     <meta charset="utf-8">
     <style>
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
-      h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
+
+      @font-face {
+        font-family: 'monoxil_regular';
+        src: url('http://mattebb.com/font/monoxil_regular_macroman/Monoxil_Regular-webfont.eot');
+        src: url('http://mattebb.com/font/monoxil_regular_macroman/Monoxil_Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('http://mattebb.com/font/monoxil_regular_macroman/Monoxil_Regular-webfont.woff') format('woff'),
+        url('http://mattebb.com/font/monoxil_regular_macroman/Monoxil_Regular-webfont.ttf') format('truetype'),
+        url('http://mattebb.com/font/monoxil_regular_macroman/Monoxil_Regular-webfont.svg#monoxil_regular') format('svg');
         font-weight: normal;
+        font-style: normal;
       }
+
+      body { font-family: 'Open Sans', sans-serif; }
+      h1, h2, h3, h4 {
+        font-family: 'monoxil_regular';
+      }
+
+      li { margin: 0.5em; }
+      ul { margin: 0; }
+
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
   </head>
@@ -22,8 +38,11 @@
     </script>
     <script>
       var slideshow = remark.create({
+      highlightLanguage: 'cpp',
+      highlightStyle: 'monokai',
+      
       //sourceUrl: 'https://raw.githubusercontent.com/ccsyd/CC_SYD_02_OculusRift/master/slides.md'
-      sourceUrl: 'http://mattebb.com/ccsyd02/slides.md'
+      sourceUrl: 'http://mattebb.com/projects/ccsyd02/slides.md'
       });
     </script>
   </body>
