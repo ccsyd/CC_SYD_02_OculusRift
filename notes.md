@@ -3,7 +3,9 @@
 - VR in general
 - Rift in OpenFrameworks
 - Examples of some projects
- 
+
+---
+
 # How does VR work?
 
 ## Intro
@@ -13,6 +15,8 @@
 - VR does a run-around these abstract thought processes and taps directly into your more primal senses, making you 'feel' like you're in a space, seeing something unfold with your own eyes. Where other media relies on a *suspension of disbelief* to let you empathise with the work, VR 'presence' requires a *suspension of belief* - you need to actively remind yourself that it's not real because your perceptual system is telling you that it is.
 - *Presence*: The point where enough of your subconscious systems are sensing that you are having an experience, that as far as your lizard brain is concerned, you are having that experience. Your conscious brain may disagree, but it's a powerful sensation. The more senses that are engaged (and agree), and the higher definition the engagement, the closer to *presence* an experience becomes.
 - "Why Virtual Reality Isn't (Just) the Next Big Platform : Michael Abrash & Dov Katz of Oculus VR" [https://www.youtube.com/watch?v=dxbh-TM5yNc]()
+
+---
 
 ## Hardware
 - Inside the DK2 headset:
@@ -160,7 +164,7 @@ Here is where you need to initialise the DK2.
 
 - First we connect the camera
 - `oculusRift.setup()` takes care of connecting to the SDK, initialising the hardware with default capabilities, and generating its internal framebuffer which you will be rendering to.
-- `oculusRift.fullscreenOnRift();` is a helper function, which when in extended mode, tries to find the rift display and position the OF window on it, filling the screen (OS X only at the moment).
+- `oculusRift.fullscreenOnRift()` is a helper function, which when in extended mode, tries to find the rift display and position the OF window on it, filling the screen (OS X only at the moment).
 
 ````
 oculusRift.baseCamera = &cam;
@@ -197,4 +201,13 @@ oculusRift.endRightEye();
 oculusRift.draw();
 ````
 
-In detail, 
+In more detail, `beginLeftEye()` binds the render target frame buffer so that subsequent drawing commands will render there.
+
+It then sets up the correct view matrices for the left eye. These get multiplied on top of the transformation of the ofCamera that you're using.
+
+The remaining functions `endLeftEye()`, `beginRightEye()`, `endRightEye()` just do the same thing, pushing and popping off the necessary matrices for each eye.
+
+`oculusRift.draw()` then takes the rendered frame buffer, applies the distortion shader, and displays it to the HMD. The distortion is specific to each HMD, as it needs to pre-warp the image to compensate for the characteristics of the lenses used. The distortion shader may also process *TimeWarp*, to attempt to re-use out of date frames if new frames are not ready yet.
+
+### Additional functionality
+There are a bunch of additional features for controlling HMD/driver functionality that you can find in `ofxOculusDK2.h`. For example `oculusRift.setPositionTracking(bool)` to enable or disable positional tracking. Functions are also available for toggling aspects of the distortion (vignette, timewarp, overdrive, low persistence, etc).
