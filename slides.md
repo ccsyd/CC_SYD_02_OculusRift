@@ -8,14 +8,14 @@ class: inverse
 
 - VR in general
 - Rift in OpenFrameworks
-- Examples of some projects
+- Examples
 
 ---
 
 class: center
 
 # Virtual Reality
-![](./images/cyber_dudes.jpg)
+![](images/lawnmower.jpg)
 
 ---
 
@@ -31,6 +31,11 @@ class: center
 - VR does a run-around these abstract thought processes and taps directly into your more primal senses, making you 'feel' like you're in a space, seeing something unfold with your own eyes. Where other media relies on a *suspension of disbelief* to let you empathise with the work, VR 'presence' requires a *suspension of belief* - you need to actively remind yourself that it's not real because your perceptual system is telling you that it is.
 - *Presence*: The point where enough of your subconscious systems are sensing that you are having an experience, that as far as your lizard brain is concerned, you are having that experience. Your conscious brain may disagree, but it's a powerful sensation. The more senses that are engaged (and agree), and the higher definition the engagement, the closer to *presence* an experience becomes.
 - "Why Virtual Reality Isn't (Just) the Next Big Platform : Michael Abrash & Dov Katz of Oculus VR" [https://www.youtube.com/watch?v=dxbh-TM5yNc]()
+
+---
+
+.center[ ![](images/cyber_dudes.jpg) ]
+
 
 ---
 
@@ -69,6 +74,10 @@ One of the reasons why VR is finding its time now is that graphics hardware has 
 - At 'infinity' no difference between eyes, up close, big difference (try it with your finger). On a practical level, 'infinity' is just the distance at which any changes in space don't translate into pixel differences
 - In practice, this requires rendering your scene twice, to generate the two different images to send to each eye.
 
+???
+
+A big part of VR is showing stereo (binocular 3d) imagery to your eyes, so it helps to know a bit about how that works.
+
 ---
 
 ## Designing for stereo
@@ -98,6 +107,22 @@ One of the reasons why VR is finding its time now is that graphics hardware has 
 
 ---
 
+## Simulator Sickness
+.center[ ![](images/pumpkin.jpg) ]
+
+---
+
+## Simulator Sickness
+- Conflicts between visual and bodily senses such as inner ear (like motion sickness)
+- Limit accelerations to be short and infrequent. Fast, snappy accelerations seem to work better than gradual
+- Never move the user's virtual camera position or orientation if not initiated by user (eg. head bobbing)
+- Respect dynamics of human motion
+- In games, cockpits help to provide frame of reference
+- Display info in 3D space, not as fixed heads-up display
+
+---
+
+
 ## Judder
 - Usually caused by insufficient refresh rate/FPS
 - DK2 display refresh rate is 75Hz, therefore applications must be able to render consistently at **75 FPS** for a usable VR experience. Oculus Rift consumer version will be even higher at 90Hz, which will be a much better experience, but also more technically demanding to render for.
@@ -113,15 +138,10 @@ One of the reasons why VR is finding its time now is that graphics hardware has 
 
 ---
 
-## Simulator Sickness
-- Conflicts between visual and bodily senses such as inner ear (like motion sickness)
-- Limit accelerations to be short and infrequent. Fast, snappy accelerations seem to work better than gradual
-- Never move the user's virtual camera position or orientation if not initiated by user (eg. head bobbing)
-- Respect dynamics of human motion
-- In games, cockpits help to provide frame of reference
-- Display info in 3D space, not as fixed heads-up display
+.center[ ![](images/box.jpg) ]
 
 ---
+
 
 ## VR hardware
 #### Oculus DK1
@@ -163,6 +183,9 @@ One of the reasons why VR is finding its time now is that graphics hardware has 
 
 ---
 
+.center[ ![](images/womanhmdgloves.jpg) ]
+
+---
 
 
 class: center, middle
@@ -199,9 +222,14 @@ class: center, middle
 
 ---
 
+
+.center[ ![](images/virtuality.jpg) ]
+
+---
+
 class: center, middle
  
-## Using the ofxOculusDK2 addon for OpenFrameworks
+# Using ofxOculusDK2 for OpenFrameworks
 
 ---
 
@@ -289,3 +317,214 @@ There are a bunch of additional features for controlling HMD/driver functionalit
 - `oculusRift.setPositionTracking(bool)` to enable or disable positional tracking.
 
 Functions are also available for toggling aspects of the distortion (vignette, timewarp, overdrive, low persistence, etc).
+
+#### Gaze/Mouse
+There are also a few helper functions to do the screen to world (and vice versa) matrix conversions, in order to facilitate mouse and/or gaze direction picking. When converting from world space to screen space, it uses the average of the two eyes' matrices.
+
+
+---
+
+.center[ ![](images/lansbury_vr.jpg) ]
+
+???
+
+Angela Lansbury
+
+---
+
+class: center middle
+
+# Example: Simple Box
+
+
+---
+
+class: center middle
+
+# Stereo Panoramic imagery
+
+---
+
+## Capturing mono 360° imagery
+
+- Many ways of storing and presenting 360° imagery, some more correct than others
+- Mono spherical panoramas much easier than stereo
+
+
+---
+
+## Capturing mono 360° imagery
+
+#### Multi-camera stitching
+
+![](images/gopro.jpg)
+
+
+---
+
+## Capturing mono 360° imagery
+#### Fisheye stitching (manual, or automatic eg. Ricoh Theta)
+
+![](images/theta.jpg)
+
+---
+
+## Capturing mono 360° imagery
+#### Slit-scan
+![](images/roundshot_mono.jpg)
+
+---
+background-image: url(images/stez01.png)
+
+## Stereo 360° imagery
+- Single mono 360 pano, encoding imagery per viewing angle for a single eye.
+
+---
+background-image: url(images/stez02.png)
+
+## Stereo 360° imagery
+- To make stereo, add a second camera, space them IPD apart?
+- Works great for forward viewing direction, get two different views of the scene per eye, spaced by IPD.
+
+---
+background-image: url(images/stez03.png)
+
+## Stereo 360° imagery
+- But what happens when you look to the side?
+- End up with the same views, no eye separation
+
+---
+background-image: url(images/stez04.png)
+
+## Stereo 360° imagery
+- Need it to be as if for any angle, the image was captured from two cameras, offset by eye distance, perpendicular to viewing direction
+
+---
+background-image: url(images/stezslit01.png)
+
+## Stereo 360° imagery
+- Slit-scan method
+- Assembling panorama out of thin slices, with dual offset cameras rotating around center point
+
+---
+background-image: url(images/stezslit02.png)
+
+## Stereo 360° imagery
+- Correct eye separation, for any given level viewing angle
+- Valid for horizontal cylindrical panoramas, not valid for any arbitrary viewing angle or head tilt
+
+---
+
+## Further info
+- This is an active area of research
+- Light Fields eg. [http://home.otoy.com/otoy-demonstrates-first-ever-light-field-capture-for-vr/ ]()
+- Paul Bourke at UWA: [http://paulbourke.net/stereographics/stereopanoramic/]()
+
+---
+class: center middle
+# Example: <br />Stereo Panorama Viewer
+
+---
+
+## Hampi Panoramas
+
+- John Gollings, Melbourne architectural photographer
+- Has been visiting and documenting the ancient city of Vijayanagara in India, now known as Hampi, regularly over the last 25 years
+- In 2006, shot a series of stereo panoramas
+
+.center[ ![© John Gollings](images/gollings_hampi.jpg) ]
+
+---
+
+## Hampi Panoramas
+
+- Shot on roundshot camera, using medium format film
+- Stereo slit-scan method.
+
+
+.center[ ![](images/gollings_pano_thumbnail.jpg) ]
+
+???
+
+Video: Excerpt from *Eye for Architecture (2009)* documentary
+
+---
+
+## Viewing in OpenFrameworks
+
+- Create camera inside a large sphere, used to display a shader
+- Load panoramas as textures
+- Draw the scene twice, changing texture bindings per eye
+- Use GLSL to perform cylindrical projection
+- Parallel cameras matches Oculus Rift Stereo projections (phew!)
+
+---
+
+### in setup() 
+
+- OF is set up by default to used pixel coordinates for texturing (using oldschool ARB extensions)
+- Much easier to manipulate using normalised texture coordinates (0.0 - 1.0), so we switch that off.
+- Load the two images into memory as OfImages (don't want to do this every frame)
+
+````
+// rect textures are fine by default in GL3, 
+// we can just use GL_TEXTURE_2D.
+// disabling allows simpler normalized texture coordinates,
+// not pixel coords
+ofDisableArbTex();
+    
+panoLeft.loadImage("well_L.jpg");
+panoRight.loadImage("well_R.jpg");
+````
+
+---
+
+### Custom draw function
+- Bind the GLSL shaders
+- Bind the correct texture per eye (from our loaded ofImage)
+- Draw a large sphere around the camera
+
+````
+panoshader.begin();
+    
+if (eye == 0)
+   panoshader.setUniformTexture("pano", panoRight.getTextureReference(), 1);
+else if (eye == 1)
+   panoshader.setUniformTexture("pano", panoLeft.getTextureReference(), 1);
+    
+ofDrawSphere(1000.0);
+    
+panoshader.end();
+````
+
+---
+
+### in draw()
+- Then we simply run our custom draw function once for each eye (after each per-eye Oculus matrix setup)
+- And `oculusRift.draw()` to send our rendered frame buffer to the SDK for distortion and presentation
+
+````
+oculusRift.beginLeftEye();
+drawScene(0);
+oculusRift.endLeftEye();
+	
+oculusRift.beginRightEye();
+drawScene(1);
+oculusRift.endRightEye();
+	
+oculusRift.draw();
+````
+---
+
+### Fragment Shader
+- Use spherical coordinates to convert world space view direction on the sphere to texture UV coordinate
+
+````
+vec3 n = vec3(worldnorm.x,worldnorm.y,worldnorm.z);
+float theta = (atan(n.x,n.z) / M_PI)*0.5 + 0.5;
+theta = mod(theta + 0.5, 1.0);
+
+float phi = acos(n.y) / M_PI;
+phi = 1.0 - fitf(n.y,-1,1,0,1);
+phi = fitf(phi,-1,1,0,1);
+````
