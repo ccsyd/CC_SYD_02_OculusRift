@@ -262,14 +262,7 @@ oculusRift.fullscreenOnRift();
 If you're using ofEasyCam, one thing that can play havoc is the 'auto distance' feature, which will push your camera out until it encompasses your scene bounds. It's better for us to have that off so we can position the camera's starting position explicitly.
 
 ````
-//enable mouse;
 cam.setAutoDistance(false);
-cam.begin();
-cam.end();
-    
-// set camera y to user eye height
-cam.setGlobalPosition(0, oculusRift.getUserEyeHeight(), 3);
-
 ````
 
 ---
@@ -336,6 +329,56 @@ class: center middle
 
 # Example: Simple Box
 
+---
+
+### In setup()
+````
+// OF init
+ofEnableDepthTest();
+ofSetVerticalSync( false );
+ofEnableNormalizedTexCoords();
+    
+oculusRift.baseCamera = &cam;
+oculusRift.setup();
+oculusRift.fullscreenOnRift();
+    
+// Add a simple box to look at
+box = ofBoxPrimitive();
+box.enableTextures();
+box.set(0.2);
+    
+// position camera just slightly away from the box
+cam.setAutoDistance(false);
+cam.setGlobalPosition(0, 0.3, 0.75);
+    
+// load the OF logo from disk ready to texture with
+ofLogo.loadImage("of.png");
+````
+
+---
+
+### in drawScene()
+
+````
+ofLogo.getTextureReference().bind();
+box.draw();
+ofLogo.getTextureReference().unbind();
+````
+
+### in draw()
+````
+oculusRift.beginLeftEye();
+drawScene();
+oculusRift.endLeftEye();
+    
+oculusRift.beginRightEye();
+drawScene();
+oculusRift.endRightEye();
+    
+oculusRift.draw();
+````
+
+That's all!
 
 ---
 
@@ -528,3 +571,28 @@ float phi = acos(n.y) / M_PI;
 phi = 1.0 - fitf(n.y,-1,1,0,1);
 phi = fitf(phi,-1,1,0,1);
 ````
+
+
+
+
+---
+
+### New Project Installation
+
+- XCode - use project generator
+- Edit Project.xcconfig:
+
+````
+ADDONS_PATH = $(OF_PATH)/addons
+
+// ofxOculusRift
+OFX_OCULUSRIFT_HEADERS = $(ADDONS_PATH)/ofxOculusDK2/libs/LibOVR/include/ $(ADDONS_PATH)/ofxOculusDK2/src
+
+OF_ADDON_HEADERS = $(OFX_OCULUSRIFT_HEADERS)
+OF_ADDON_LIBS = $(OFX_OCULUSRIFT_LIBS)
+
+OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_ADDON_LIBS)
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS)  $(OF_ADDON_HEADERS)
+````
+
+- add LibOVR.framework to Project &rarr; Build Phases &rarr; Link Binary with Libraries
