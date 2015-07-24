@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0CCC0B3A-83FE-4EC4-AEBA-9CC6EAFA1259</string>
+	<key>IDESourceControlProjectName</key>
+	<string>panoViewer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>082F152AF780A30C54B180FE8215453DA2D068BD</key>
+		<string>https://github.com/mattebb/ofxOculusDK2.git</string>
+		<key>DA8FFC3357F7CB81B435FE37417AB5DDC0AC91BF</key>
+		<string>https://github.com/ccsyd/CC_SYD_02_OculusRift.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>panoViewer/panoViewer.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>082F152AF780A30C54B180FE8215453DA2D068BD</key>
+		<string>../../../../Code/of_v0.8.4_osx_release/addons/ofxOculusDK2</string>
+		<key>DA8FFC3357F7CB81B435FE37417AB5DDC0AC91BF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ccsyd/CC_SYD_02_OculusRift.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DA8FFC3357F7CB81B435FE37417AB5DDC0AC91BF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DA8FFC3357F7CB81B435FE37417AB5DDC0AC91BF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CC_SYD_02_OculusRift</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>082F152AF780A30C54B180FE8215453DA2D068BD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxOculusDK2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

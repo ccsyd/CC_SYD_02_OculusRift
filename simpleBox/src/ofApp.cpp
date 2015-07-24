@@ -18,7 +18,7 @@ void ofApp::setup(){
     
     // position camera just slightly away from the box
     cam.setAutoDistance(false);
-    cam.setGlobalPosition(0, 0.3, 0.75);
+    cam.setGlobalPosition(0, 0.3, 0.5);
     
     // load the OF logo from disk ready to texture with
     ofLogo.loadImage("of.png");
