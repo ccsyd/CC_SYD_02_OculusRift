@@ -316,6 +316,34 @@ Popular commercial use of VR, easier transition from traditional film making
 
 ---
 
+
+## Hampi Panoramas
+
+- John Gollings, Melbourne architectural photographer
+- Has been visiting and documenting the ancient city of Vijayanagara in India, now known as Hampi, regularly over the last 25 years
+- In 2006, shot a series of stereo panoramas
+
+.center[ ![© John Gollings](images/gollings_hampi.jpg) ]
+
+---
+
+## Hampi Panoramas
+
+- Shot on roundshot camera, using medium format film
+- Stereo slit-scan method.
+- Every method of captuing 360° imagery has tradeoffs, this prioritised high quality stereo
+
+.center[ ![](images/gollings_pano_thumbnail.jpg) ]
+
+???
+
+Video: Excerpt from *Eye for Architecture (2009)* documentary
+
+If we have time at the end, I can talk about various types of 360° capture and how they differ - ask me.
+
+---
+
+
 ## Capturing mono 360° imagery
 
 - Many ways of storing and presenting 360° imagery, some more correct than others
@@ -394,30 +422,6 @@ background-image: url(images/stezslit02.png)
 ---
 class: center middle
 # Example: <br />Stereo Panorama Viewer
-
----
-
-## Hampi Panoramas
-
-- John Gollings, Melbourne architectural photographer
-- Has been visiting and documenting the ancient city of Vijayanagara in India, now known as Hampi, regularly over the last 25 years
-- In 2006, shot a series of stereo panoramas
-
-.center[ ![© John Gollings](images/gollings_hampi.jpg) ]
-
----
-
-## Hampi Panoramas
-
-- Shot on roundshot camera, using medium format film
-- Stereo slit-scan method.
-
-
-.center[ ![](images/gollings_pano_thumbnail.jpg) ]
-
-???
-
-Video: Excerpt from *Eye for Architecture (2009)* documentary
 
 ---
 
@@ -501,7 +505,8 @@ phi = fitf(phi,-1,1,0,1);
 ````
 
 ---
-# Questions?
+# Questions? Come and try it!
+
 
 ### Me
 - [http://mattebb.com]()
