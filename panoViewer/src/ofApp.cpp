@@ -5,7 +5,6 @@ void ofApp::setup(){
     
     // OF init
     ofEnableDepthTest();
-    ofSetVerticalSync( false );
     
     oculusRift.baseCamera = &cam;
     oculusRift.setup();

@@ -4,7 +4,6 @@
 void ofApp::setup(){
     // OF init
     ofEnableDepthTest();
-    ofSetVerticalSync( false );
     ofEnableNormalizedTexCoords();
     
     oculusRift.baseCamera = &cam;
