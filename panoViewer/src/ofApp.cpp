@@ -16,8 +16,8 @@ void ofApp::setup(){
     // disabling allows simpler normalized texture coordinates, not pixel coords
     ofDisableArbTex();
     
-    panoLeft.loadImage("well_L.jpg");
-    panoRight.loadImage("well_R.jpg");
+    panoLeft.loadImage("panoL.jpg");
+    panoRight.loadImage("panoR.jpg");
     
     cam.setAutoDistance(false);
 }
