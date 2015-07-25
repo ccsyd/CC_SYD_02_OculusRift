@@ -4,23 +4,23 @@ class: inverse
 
 ---
 
-class: center
+class: center middle
 
 # Oculus Rift in OpenFrameworks
 
 
 # Matt Ebb
 
-- VR in general
-- Rift in OpenFrameworks
-- Examples
-
----
-
 
 ???
 
 - Some background on me and how I got involved with this
+
+---
+background-image: url(images/matt_fx.jpg)
+
+???
+
 - Unlike others, I'm not using openFrameworks on a day to day basis
 - day job doing visual effects for films, currently working at AL
 - however it does involve quite a bit of creative coding, in other contexts
@@ -33,22 +33,25 @@ class: center
  - updating it for new versions new best practices of the Oculus Software development kit
  - developing extra functionality
 
+---
 
+# Oculus Rift in OpenFrameworks
 
-----
-class: center
-
-# Virtual Reality
+- VR in general
+- Rift in OpenFrameworks with ofxOculusDK2
+- Example projects
 
 ---
 
-## How does VR work?
+## What is Virtual Reality?
 
 - VR: fooling your senses and subconscious.
  - Information delivered directly to your perceptual systems in the way that they have evolved to receive it.
 - Qualitatively different to other forms of media that you engage with intellectually, VR works on a deeper, more subconscious level.
  
 ---
+
+## How is it different?
 
 - Existing media use abstractions, not experience
 - VR qualitatively different, taps directly into subconscious experience
@@ -72,6 +75,8 @@ class: center
  - Infra-red LEDs for positional tracking
 
 - No longer need bulky complicated multi-element lenses to correct distortion - do it in graphics hardware
+
+.center[ ![](images/gpu_distortion.jpg) ]
 
 ???
 
@@ -111,6 +116,8 @@ A big part of VR is showing stereo (binocular 3d) imagery to your eyes, so it he
 - Noise/aliasing different in each eye = Can create shimmering effect as each eye is looking at different patterns
 - Specular highlights causing differences in images per eye. Be careful with how these are used
 
+.center[ ![](images/bourke_stereo_texture.jpg) ]
+
 ---
 
 ## Designing for VR
@@ -134,6 +141,7 @@ A big part of VR is showing stereo (binocular 3d) imagery to your eyes, so it he
 - Respect dynamics of human motion
 - In games, cockpits help to provide frame of reference
 - Display info in 3D space, not as fixed heads-up display
+- Refer to Oculus best practices guide: [http://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/]()
 
 ---
 
@@ -141,10 +149,18 @@ A big part of VR is showing stereo (binocular 3d) imagery to your eyes, so it he
 ## Judder
 - Mismatch of the relative motion between virtual objects on screen and movement of eye scanning across screen (or vice versa, rotation of head while eye tracks a stationary object)
 - Caused by dropped frames, insufficient refresh rate/FPS, not able to keep up with head movements
-- DK2 display refresh rate is 75Hz, therefore applications must be able to render consistently at **75 FPS** for a usable VR experience. Oculus Rift consumer version will be even higher at 90Hz :o
+- DK2 refresh rate is 75Hz, final consumer version will be 90Hz 😭
 - Much better for user experience  to have less visual fidelity and hit FPS targets than have beautiful still frame visuals but jumpy rendering.
 - All kinds of tricky problems with Vertical Sync
-- [ visual example ]
+
+
+???
+- DK2 display refresh rate is 75Hz, therefore applications must be able to render consistently at **75 FPS** for a usable VR experience. Oculus Rift consumer version will be even higher at 90Hz :o
+
+---
+
+background-image: url(images/judder.jpg)
+
 - See: [http://blogs.valvesoftware.com/abrash/why-virtual-isnt-real-to-your-brain-judder/]()
 - How VSync works: http://doc-ok.org/?p=1057
 
@@ -164,18 +180,18 @@ class: center, middle
  - Framebuffer resolution determined by SDK, but can scale up or down to speed up rendering at expense of definition
 - Run distortion shader on the framebuffer to distort the image, rendering the output to a new framebuffer, for presentation to device
 - Final distorted output at resolution of device
-- Most of these details are wrapped up and done for you in the ofxOculusDK2 addon
+- Most of these details are wrapped up and done for you in the ofxOculusDK2 addon!
 
 ---
 
-![](images/framebuffer.jpg)
+background-image: url(images/framebuffer.jpg)
+
 
 ---
 
 ## Other SDK versions (0.6+)
 - Current version of ofxOculusDK2 only supports Oculus SDK v0.5.0.1 - last version available on Mac OS X and Linux. Oculus SDK 0.6+ Windows versions include:
  - Multiple framebuffer layers (for keeping overlays, i.e. HUD text at highest resolution, while downscaling main 3D content)
- - No more 'client distortion', all handled in SDK
  - Windows 'Direct Mode'
 
 ???
@@ -259,7 +275,6 @@ class: center middle
 ````
 // OF init
 ofEnableDepthTest();
-ofSetVerticalSync( false );
 ofEnableNormalizedTexCoords();
     
 oculusRift.baseCamera = &cam;
@@ -284,6 +299,7 @@ cam.setGlobalPosition(0, 0.3, 0.75);
 ### in drawScene()
 
 ````
+// bind texture to box and draw
 ofLogo.getTextureReference().bind();
 box.draw();
 ofLogo.getTextureReference().unbind();
@@ -291,6 +307,7 @@ ofLogo.getTextureReference().unbind();
 
 ### in draw()
 ````
+// draw eyes to framebufferer
 oculusRift.beginLeftEye();
 drawScene();
 oculusRift.endLeftEye();
@@ -298,7 +315,8 @@ oculusRift.endLeftEye();
 oculusRift.beginRightEye();
 drawScene();
 oculusRift.endRightEye();
-    
+
+// distort and present to HMD
 oculusRift.draw();
 ````
 
@@ -323,7 +341,14 @@ Popular commercial use of VR, easier transition from traditional film making
 - Has been visiting and documenting the ancient city of Vijayanagara in India, now known as Hampi, regularly over the last 25 years
 - In 2006, shot a series of stereo panoramas
 
+
 .center[ ![© John Gollings](images/gollings_hampi.jpg) ]
+
+???
+
+- Several of these works in collection of National Gallery Victoria
+
+- Panoramas were intended for projection on a cylindrical wall, with a projector that you could turn to reveal different parts of the image
 
 ---
 
@@ -331,95 +356,38 @@ Popular commercial use of VR, easier transition from traditional film making
 
 - Shot on roundshot camera, using medium format film
 - Stereo slit-scan method.
-- Every method of captuing 360° imagery has tradeoffs, this prioritised high quality stereo
+- Every method of capturing 360° imagery has tradeoffs
 
 .center[ ![](images/gollings_pano_thumbnail.jpg) ]
 
 ???
 
-Video: Excerpt from *Eye for Architecture (2009)* documentary
-
 If we have time at the end, I can talk about various types of 360° capture and how they differ - ask me.
 
 ---
+background-image: url(images/stezslit_double.png)
 
-
-## Capturing mono 360° imagery
+## 'slit-scan' stereo panorama
 
 - Many ways of storing and presenting 360° imagery, some more correct than others
-- Mono spherical panoramas much easier than stereo
+- In general, stereo panoramas much more difficult than mono
 
-
----
-
-## Capturing mono 360° imagery
-
-#### Multi-camera stitching
-
-![](images/gopro.jpg)
-
-
----
-
-## Capturing mono 360° imagery
-#### Fisheye stitching (manual, or automatic eg. Ricoh Theta)
-
-![](images/theta.jpg)
-
----
-
-## Capturing mono 360° imagery
-#### Slit-scan
-![](images/roundshot_mono.jpg)
-
----
-background-image: url(images/stez01.png)
-
-## Stereo 360° imagery
-- Single mono 360 pano, encoding imagery per viewing angle for a single eye.
-
----
-background-image: url(images/stez02.png)
-
-## Stereo 360° imagery
-- To make stereo, add a second camera, space them IPD apart?
-- Works great for forward viewing direction, get two different views of the scene per eye, spaced by IPD.
-
----
-background-image: url(images/stez03.png)
-
-## Stereo 360° imagery
-- But what happens when you look to the side?
-- End up with the same views, no eye separation
-
----
-background-image: url(images/stez04.png)
-
-## Stereo 360° imagery
-- Need it to be as if for any angle, the image was captured from two cameras, offset by eye distance, perpendicular to viewing direction
-
----
-background-image: url(images/stezslit01.png)
-
-## Stereo 360° imagery
-- Slit-scan method
+???
 - Assembling panorama out of thin slices, with dual offset cameras rotating around center point
-
----
-background-image: url(images/stezslit02.png)
-
-## Stereo 360° imagery
 - Correct eye separation, for any given level viewing angle
 - Valid for horizontal cylindrical panoramas, not valid for any arbitrary viewing angle or head tilt
 
----
 
-## Further info
-- This is an active area of research
-- Light Fields eg. [http://home.otoy.com/otoy-demonstrates-first-ever-light-field-capture-for-vr/ ]()
-- Paul Bourke at UWA: [http://paulbourke.net/stereographics/stereopanoramic/]()
+Video: Excerpt from *Eye for Architecture (2009)* documentary
 
 ---
+## Roundshot film camera
+
+![](images/roundshot_mono.jpg)
+
+
+---
+
 class: center middle
 # Example: <br />Stereo Panorama Viewer
 
@@ -437,9 +405,8 @@ class: center middle
 
 ### in setup() 
 
-- OF is set up by default to used pixel coordinates for texturing (using oldschool ARB extensions)
-- Much easier to manipulate using normalised texture coordinates (0.0 - 1.0), so we switch that off.
-- Load the two images into memory as OfImages (don't want to do this every frame)
+- OF is set up by default to used pixel coordinates for texturing (using oldschool ARB extensions), easier to to manipulate using normalised texture coordinates (0.0 - 1.0).
+- Load the two images into memory as ofImages (don't want to do this every frame)
 
 ````
 // rect textures are fine by default in GL3, 
@@ -454,7 +421,7 @@ panoRight.loadImage("well_R.jpg");
 
 ---
 
-### Custom draw function
+### drawScene()
 - Bind the GLSL shaders
 - Bind the correct texture per eye (from our loaded ofImage)
 - Draw a large sphere around the camera
@@ -474,7 +441,7 @@ panoshader.end();
 
 ---
 
-### in draw()
+### draw()
 - Then we simply run our custom draw function once for each eye (after each per-eye Oculus matrix setup)
 - And `oculusRift.draw()` to send our rendered frame buffer to the SDK for distortion and presentation
 
@@ -504,15 +471,29 @@ phi = 1.0 - fitf(n.y,-1,1,0,1);
 phi = fitf(phi,-1,1,0,1);
 ````
 
+[http://en.wikipedia.org/wiki/Spherical_coordinate_system]()
+
 ---
-# Questions? Come and try it!
+
+## Further work
+
+- This is an active area of research
+- Stereo panorama encodes orientation but not position
+ - Convert to geometry?
+ - Point clouds?
+ - Light Fields eg. [http://home.otoy.com/otoy-demonstrates-first-ever-light-field-capture-for-vr/ ]()
+- Good overview - Paul Bourke at UWA: [http://paulbourke.net/stereographics/stereopanoramic/]()
+
+---
+# Questions?
+# Come and try it!
 
 
 ### Me
 - [http://mattebb.com]()
 - matt@mattebb.com
 
-### Code
+### Code (including examples)
 - [http://github.com/mattebb/ofxOculusDK2]()
 - [http://github.com/ccsyd/CC_SYD_02_OculusRift]()
 
