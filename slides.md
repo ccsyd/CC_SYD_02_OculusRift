@@ -335,10 +335,6 @@ Popular commercial use of VR, easier transition from traditional film making
 - John Gollings, Melbourne architectural photographer
 - Has been visiting and documenting the ancient city of Vijayanagara in India, now known as Hampi, regularly over the last 25 years
 - In 2006, shot a series of stereo panoramas
-
-
-.center[ ![© John Gollings](images/gollings_hampi.jpg) ]
-
 ???
 
 - Several of these works in collection of National Gallery Victoria
