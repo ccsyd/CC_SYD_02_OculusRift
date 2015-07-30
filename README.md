@@ -17,7 +17,7 @@ Slides are available here: http://ccsyd.github.io/CC_SYD_02_OculusRift/
 
 Getting all the libraries and headers set up can be a little annoying. Here are some rough instructions for Max OS X:
 
-- XCode - use project generator
+- XCode - use project generator, include the ofxOculusDK2 addon
 - in Xcode folder list addons/ofxOculusDF2, delete 'lib' folder
 
 - Edit Project.xcconfig:
