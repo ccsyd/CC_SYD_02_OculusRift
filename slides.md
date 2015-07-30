@@ -345,8 +345,16 @@ Popular commercial use of VR, easier transition from traditional film making
 
 ## Hampi Panoramas
 
-![](images/roundshot_mono.jpg)
+### Roundshot camera (mono)
 
+![](images/roundshot_mono.jpg) 
+
+---
+## Hampi Panoramas
+
+### Roundshot camera (stereo)
+
+![](images/roundshot_stereo.jpg)
 
 ---
 
