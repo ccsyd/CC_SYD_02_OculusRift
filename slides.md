@@ -12,18 +12,13 @@ class: center middle
 # Matt Ebb
 
 
+---
+
 ???
 
 - Some background on me and how I got involved with this
-
----
-background-image: url(images/matt_fx.jpg)
-
-???
-
-- Unlike others, I'm not using openFrameworks on a day to day basis
-- day job doing visual effects for films, currently working at AL
-- however it does involve quite a bit of creative coding, in other contexts
+- I'm not using openFrameworks on a day to day basis
+- day job doing visual effects for films, currently working at Animal Logic, involves quite a bit of creative coding, but in other contexts
 - It was there that I got a small taste of the Oculus Development Kit 1 when another team was using it to test a 360° video project they were working on
 - from there got hooked, partly because saw potential for art/design/creative coding, not just games
 - part of that market is getting big, eg. panoramic imagery/video, which I'll touch on later with a little project I've been working on.
@@ -354,23 +349,17 @@ Popular commercial use of VR, easier transition from traditional film making
 
 ## Hampi Panoramas
 
-- Shot on roundshot camera, using medium format film
-- Stereo slit-scan method.
-- Every method of capturing 360° imagery has tradeoffs
+![](images/roundshot_mono.jpg)
 
-.center[ ![](images/gollings_pano_thumbnail.jpg) ]
-
-???
-
-If we have time at the end, I can talk about various types of 360° capture and how they differ - ask me.
 
 ---
+
 background-image: url(images/stezslit_double.png)
 
 ## 'slit-scan' stereo panorama
 
-- Many ways of storing and presenting 360° imagery, some more correct than others
-- In general, stereo panoramas much more difficult than mono
+- Shot on roundshot camera, using medium format film
+- Stereo slit-scan method
 
 ???
 - Assembling panorama out of thin slices, with dual offset cameras rotating around center point
@@ -381,10 +370,16 @@ background-image: url(images/stezslit_double.png)
 Video: Excerpt from *Eye for Architecture (2009)* documentary
 
 ---
-## Roundshot film camera
 
-![](images/roundshot_mono.jpg)
 
+## Hampi Panoramas
+
+
+.center[ ![](images/gollings_pano_thumbnail.jpg) ]
+
+???
+
+If we have time at the end, I can talk about various types of 360° capture and how they differ - ask me.
 
 ---
 
