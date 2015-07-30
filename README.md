@@ -1,9 +1,7 @@
 # CC_SYD_02_OculusRift
 ### Oculus Rift in OpenFrameworks
 ### Matt Ebb
-matt (at) mattebb.com
-
-[ http://mattebb.com ]()
+matt (at) mattebb.com / http://mattebb.com 
 
 Slides are available here: http://ccsyd.github.io/CC_SYD_02_OculusRift/
 
