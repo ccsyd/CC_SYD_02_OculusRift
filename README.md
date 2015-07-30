@@ -11,7 +11,7 @@ Slides are available here: http://ccsyd.github.io/CC_SYD_02_OculusRift/
 - of 0.8.4
 - ofxOculusDK2 addon (mattebb branch: https://github.com/mattebb/ofxOculusDK2/ )
 - Oculus Runtime
-- Oculus SDK (may not need this, but it's probably handy to have)
+- Oculus SDK (may not actually need this, I haven't tested without it. Handy to have anyway)
 
 ### New Project Installation
 
